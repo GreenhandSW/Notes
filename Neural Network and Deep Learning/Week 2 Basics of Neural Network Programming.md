@@ -101,6 +101,8 @@ $\displaystyle J( a,b,c) =3( a+bc)$
 
 令$\displaystyle u=bc$，则$\displaystyle v=a+u$，$\displaystyle J=3v$
 
+<img src="Week 2 Basics of Neural Network Programming.assets/1571473412094.png" alt="1571473412094" style="zoom:80%;" />
+
 # 8. 计算图的导数计算
 
 $$
