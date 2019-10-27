@@ -185,7 +185,7 @@ $$
 >
 >$b=b-\alpha d$
 
-​		其中，$\displaystyle z^{( i)}$含有上标，因为其对应第$\displaystyle i$个训练样本的计算，而$\displaystyle dw_{1} ,\ dw_{2} ,\ db$用作累加器（最后除以m，得到$\displaystyle "dw_{1} "=\frac{\partial \mathcal{L}}{\partial w_{1}}$），故没有上标。
+​		其中，$\displaystyle z^{( i)}$含有上标，因为其对应第$\displaystyle i$个训练样本的计算，而$\displaystyle dw_{1} ,\ dw_{2} ,\ db$用作累加器（最后除以$m$，得到$\displaystyle "dw_{1} "=\frac{\partial \mathcal{L}}{\partial w_{1}}$），故没有上标。
 
 # 11. 向量化(vectorization techniques)
 
@@ -303,18 +303,18 @@ x^{T}
 
 - 矩阵
 
-```python
-b = np.random.randn(5,1)
-print(b)
-'''[[-0.89820767],
-[-0.27581984],
-[-0.32744034],
-[-0.60529585],
-[-0.29806446]]
-'''
-print(b.shape) '''(5, 1), 即b为1times 5的矩阵（列向量）'''
-print(np.dot(b, b.T)) '''得到5times 5的矩阵，即得到向量的外积'''
-```
+  ```python
+  b = np.random.randn(5,1)
+  print(b)
+  '''[[-0.89820767],
+  [-0.27581984],
+  [-0.32744034],
+  [-0.60529585],
+  [-0.29806446]]
+  '''
+  print(b.shape) '''(5, 1), 即b为1times 5的矩阵（列向量）'''
+  print(np.dot(b, b.T)) '''得到5times 5的矩阵，即得到向量的外积'''
+  ```
 
 # 17. Jupyter/ipython笔记本的快速指南
 
@@ -337,7 +337,7 @@ $$
 \mathcal{L}\left(\hat{y} ,y\right) =-\log p( y|x) =-\left[ y\log\left(\hat{y}\right) +\left( 1-y\right)\log\left( 1-\hat{y}\right)\right]
 $$
 
-# 2. 成本函数
+## 2. 成本函数
 
 ​		从最大似然角度出发，设所有样本独立同分布，则：
 
@@ -353,3 +353,4 @@ $$
 $$
 
 ​		最大化$\displaystyle p( y|x)$等同于最小化$J( w,b)$。
+
