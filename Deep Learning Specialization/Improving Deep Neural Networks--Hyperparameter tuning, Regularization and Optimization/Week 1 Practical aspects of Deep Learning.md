@@ -75,7 +75,7 @@ $$
 
 ## 神经网络
 
-​		求解的问题：$\displaystyle \min_{w^{[l]}, b^{[l]}} J(w^{[1]}, b^{[1]}, \cdots, w^{[L]}, b^{[L]})$。
+​		求解的问题：$\displaystyle \min_{w^{[l]}, b^{[l]}} J(w^{[1]}, b^{[1]}, \cdots, w^{[L]}, b^{[L]}) $。
 
 ### Frobenius范数（$L2$范数）
 
@@ -90,7 +90,7 @@ $$
 dW^{[l]}=\frac{\partial J}{\partial W^{[l]}}+\frac{\lambda}{m}W^{[l]}\\
 W^{[l]}=(1-\alpha \frac{\lambda}{m})W^{[l]}-\alpha dW^{[l]}
 $$
-​		由于$(1-\alpha \frac{\lambda}{m})<1$，因此$L2$正则化也被称为**权重衰减**。
+​		由于$(1-\alpha \frac{\lambda}{m})<1 $，因此$L2$正则化也被称为**权重衰减**。
 
 # 5. 为什么正则化可以减少过拟合？
 
@@ -132,11 +132,17 @@ $$
 ```python
 dl = np.random.rand(al.shape[0], al.shape[1]) < keep_prob
 al = np.multiply(al, dl)
-# 反向dropout，通过给al除以keep_prob以确保al的期望值不变
-al /= keep_prob
 ```
 
 其中`keep_prob`表示保留某个隐藏单元的概率。
+
+**inverted dropout**（反向dropout）：通过给al除以keep_prob以确保al的期望值不变。
+
+```python
+al /= keep_prob
+```
+
+
 
 # 7. 理解Dropout
 
@@ -201,8 +207,64 @@ $$
 
 # 10. 梯度消失与梯度爆炸
 
-​		若$g(z)=\sigma(z)$，则
+​		设$g(z)=z,b^{[l]}=0$，则
+$$
+\begin{aligned}
+\hat{y}&=a^{[L]}=g(z^{[L]})=z^{[L]}=W^{[L]}a^{[L-1]}=\cdots \\
+&=W^{[L]}W^{[L-1]}\cdots W^{[1]}x
+\end{aligned}
+$$
+​		设权重矩阵$W^{[l]}=\begin{bmatrix} 1.5 & 0\\0 & 1.5 \end{bmatrix}, l=1,2,\cdots,L$，则易得$\hat{y}=\begin{bmatrix} 1.5^{L} & 0\\0 & 1.5^{L} \end{bmatrix}x$，激活函数爆炸式增长。
 
-
+​		设权重矩阵$W^{[l]}=\begin{bmatrix} 0.5 & 0\\0 & 0.5 \end{bmatrix}, l=1,2,\cdots,L$，则易得$\hat{y}=\begin{bmatrix} 0.5^{L} & 0\\0 & 0.5^{L} \end{bmatrix}x$，激活函数急剧减小。
 
 > [梯度消失参考文章]( https://blog.csdn.net/fishmemory/article/details/53885691 )
+
+# 11. 神经网络的权重初始化
+
+​		忽略偏置$b$，则$z=w_1x_1+w_2x_2+\cdots+w_nx_n$，显然为避免梯度爆炸或消失，输入的$x$维度越大，则$w_i$应当越小。可在初始化时，令$Var(w_i)=\frac{1}{n}$。代码如下：
+
+```python
+WL=np.random.randn(n, n_prev)*np.sqrt(1/n_prev)
+```
+
+| 激活函数 | 初始化权重时的方差$Var(w_i)$（也是超参数）                   |
+| -------- | ------------------------------------------------------------ |
+| ReLU​     | $\frac{2}{n_{prev}}$                                         |
+| $\tanh$  | $\frac{1}{n_{prev}}$(Xavier initialization)<br />或$\frac{1}{n_{prev}+n}$ |
+
+# 12. 梯度的数值逼近
+
+<div align="center">
+    <img src="Week 1 Practical aspects of Deep Learning.assets/1573879505858.png" alt="1573879505858" style="zoom:80%;" />
+</div>
+
+​		执行梯度检验时，为更加准确，使用双边误差，即$f^{'}(\theta)=\frac{f(\theta+\epsilon)-f(\theta-\epsilon)}{2\epsilon}$
+
+# 13. 梯度检验
+
+​		将$W^{[1]}, b^{[1]},\cdots,W^{[L]}, b^{[L]}$合并成为一个向量$\theta$，即$J(W^{[1]}, b^{[1]},\cdots,W^{[L]}, b^{[L]})=J(\theta)$。
+
+​		将$dW^{[1]}, db^{[1]},\cdots,dW^{[L]}, db^{[L]}$合并成为一个向量$d\theta$。
+
+梯度检验(Grad Check)
+$$
+\begin{aligned}
+d\theta_{approx}[i]&=\frac{J(\theta_1, \theta_2,\cdots,\theta_{i-1}, \theta_{i}+\epsilon,\cdots)-J(\theta_1, \theta_2,\cdots,\theta_{i-1}, \theta_{i}-\epsilon,\cdots)}{2\epsilon}\\
+&\approx d\theta[i]=\frac{\partial J}{\partial \theta_i}
+\end{aligned}
+$$
+​		检查$d\theta_{approx}$的误差，即计算：
+$$
+\frac{\left\|d\theta_{approx}-d\theta\right\|_2}{\left\|d_{approx}\right\|_2+\left\|d\theta\right\|_2}
+$$
+如，若该式$<\epsilon$，则梯度逼近很正确，若显著$>\epsilon$，则需要检查该向量$\theta$的所有项
+
+# 14. 关于梯度检验实现的标记
+
+- 梯度检验仅用于调试
+- 若$d\theta_{approx}$与$d\theta$的差距较大，则检查所有的$d\theta_{approx}[i]$。
+
+- 若有正则化，不要忘记对正则项的导数
+- 有dropout时无法实现梯度检验，因为神经元会被随机删除，无法计算代价函数。若要实现梯度检验，需要先关闭dropout。
+
