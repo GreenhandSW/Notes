@@ -87,7 +87,7 @@ $\displaystyle J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)
 |                             图像                             | 计算过程                                                     |
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
 | <img src="Week 2 Basics of Neural Network Programming.assets/timg.jpg" alt="一维梯度下降" style="zoom:50%;" /> | repeat{<br />         $w=w-\alpha \frac{dJ( w)}{dw}$<br />}<br />>注：编程时使用$\displaystyle dw$ 作为$\displaystyle \frac{dJ( w)}{dw}$ 的变量名 |
-| <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1571328065563&di=f1fc3cd67d4ce5571a727777f0ae9aa9&imgtype=0&src=http%3A%2F%2Fimg2018.cnblogs.com%2Fblog%2F991470%2F201902%2F991470-20190207112200539-553338814.png" alt="2D Gradient Descent" style="zoom:50%;" /> | repeat\{<br/>	$\displaystyle w=w-\alpha \frac{\partial J( w)}{\partial w}$<br/>	$\displaystyle b=b-\alpha \frac{\partial J( w)}{\partial w}$<br/>\} |
+| ![多维梯度下降](Week 2 Basics of Neural Network Programming.assets/u=485519788,313928834&fm=26&gp=0.jpg) | repeat\{<br/>	$\displaystyle w=w-\alpha \frac{\partial J( w)}{\partial w}$<br/>	$\displaystyle b=b-\alpha \frac{\partial J( w)}{\partial w}$<br/>\} |
 
 其中：$\displaystyle \alpha $为学习率（步长）
 
@@ -134,7 +134,9 @@ w_{2} & =w_{2} -\alpha dw_{2}\\
 b & =b-\alpha d
 \end{aligned}$
 
-# 10. m个样本的梯度下降
+# 10. $m$个样本的梯度下降
+
+单个样本的梯度下降即**随机梯度下降(SGD)**，多个样本的梯度下降即**平均梯度下降**。
 
 **全局成本函数**：$\displaystyle J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left( a^{( i)} ,y^{( i)}\right)$
 
@@ -333,9 +335,12 @@ x^{T}
 
 ​		由于最大化$\displaystyle p( y|x)$等同于最大化$\displaystyle \log p( y|x)$，因此求对数并取负值得到<u>**损失函数**</u>：
 
+交叉熵：
 $$
 \mathcal{L}\left(\hat{y} ,y\right) =-\log p( y|x) =-\left[ y\log\left(\hat{y}\right) +\left( 1-y\right)\log\left( 1-\hat{y}\right)\right]
 $$
+
+注意：交叉熵与同时使用LogSoftMax和NLL Loss的作用相似，因此要避免重复使用。
 
 ## 2. 成本函数
 
