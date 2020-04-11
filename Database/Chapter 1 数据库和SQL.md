@@ -40,7 +40,7 @@
 **表**：用来管理数据的二维表在关系数据库中简称为表。
 
 <div align="center">
-    <img src="Chapter 1 数据库和SQL.assets/1571370301172.png" alt="数据库和表的关系" style="zoom:80%;" />
+    <img src="Chapter 1 数据库和SQL.assets/image-20200412010639545.png" alt="image-20200412010639545" style="zoom:80%;" />
     <br>
     <b>数据库和表的关系</b>
 </div>
@@ -48,10 +48,11 @@
 ​		<u>根据 SQL 语句的内容返回的数据同样必须是二维表的形式</u>，这也是关系数据库的特征之一。
 
 <div align="center">
-    <img src="Chapter 1 数据库和SQL.assets/1571370694856.png" alt="表的示例" style="zoom:80%;" />
+    <img src="Chapter 1 数据库和SQL.assets/image-20200412010709940.png" alt="image-20200412010709940" style="zoom:80%;" />
     <br>
     <b>表的示例</b>
 </div>！
+
 
 | 术语   | 含义                                             |
 | ------ | ------------------------------------------------ |
@@ -95,46 +96,43 @@
 
 ## 表的内容的创建
 
-##   数据库的创建（**CREATE DATABASE**语句）
+##   数据库的创建（`CREATE DATABASE`语句）
 
-1. 语法1-1	创建数据库的**CREATE DATABASE**语句
+> *语法1-1	创建数据库的`CREATE DATABASE`语句*
+>
+> ```mysql
+> CREATE DATABASE <数据库名称>;
+> ```
+>
 
-```mysql
-CREATE DATABASE <数据库名称>;
-```
+##   表的创建（`CREATE TABLE`语句）
 
-2. 代码清单1-1	创建数据库**shop**的**CREATE DATABASE**语句
+> *语法1-2	创建表的`CREATE TABLE`语句*
+>
+>
+> ```mysql
+> CREATE TABLE <表名> (
+>     <列名1> <数据类型> <该列所需约束>,
+>     <列名2> <数据类型> <该列所需约束>,
+>     <该表的约束1>, <该表的约束2>
+> );
+> ```
+>
 
-```mysql
-CREATE DATABASE shop;
-```
-
-##   表的创建（**CREATE TABLE**语句）
-
-1. 语法1-2	创建表的**CREATE TABLE**语句
-
-
-```mysql
-CREATE TABLE <表名> (
-    <列名1> <数据类型> <该列所需约束>,
-    <列名2> <数据类型> <该列所需约束>,
-    <该表的约束1>, <该表的约束2>
-);
-```
-
-2. 代码清单1-2	创建**Product**表的**CREATE TABLE**语句
-
-```mysql
-CREATE TABLE product (
-	product_id char(4) NOT NULL,
-	product_name varchar(100) NOT NULL,
-	product_type varchar(32) NOT NULL,
-	sale_price integer,
-	putchase_price integer,
-	regist_date date,
-	PRIMARY KEY (product_id)
-);
-```
+> *代码清单1-2	创建**Product**表的`CREATE TABLE`语句*
+>
+> ```mysql
+> CREATE TABLE product (
+> 	product_id char(4) NOT NULL,
+> 	product_name varchar(100) NOT NULL,
+> 	product_type varchar(32) NOT NULL,
+> 	sale_price integer,
+> 	putchase_price integer,
+> 	regist_date date,
+> 	PRIMARY KEY (product_id)
+> );
+> ```
+>
 
 ## 命名规则
 
@@ -154,7 +152,60 @@ CREATE TABLE product (
 | INTEGER                     | 存储整数。                                                   |
 | <span id="CHAR">CHAR</span> | 存储字符串（区分大小写）。语法为`CHAR(100)`（100表示最大长度，单位为字符个数或字节长度，字符以[**定长字符串**](#jump)的形式存储）。 |
 | VARCHAR                     | 存储字符串。语法同[CHAR](#CHAR)                              |
-|                             |                                                              |
+| DATE                        | 存储日期（年月日）                                           |
 
 <span id="jump"><b>定长字符串</b></span>：当列中存储的字符串长度达不到最大长度的时候，使用半角空格进行补足。
 
+## 约束的设置
+
+| `NOT NULL`      | 不能空白 |
+| --------------- | -------- |
+| `PRIMARY KEY()` | 主键约束 |
+
+**键**：指定特定数据时使用的列的组合。
+
+**主键**：指定特定（唯一确定）一行数据的列。
+
+# 1-5 表的删除和更新
+
+## 表的删除（ DROP TABLE语句）
+
+> *语法1-3 删除表时使用的`DROP TABLE`语句*
+>
+> ```mysql
+> DROP TABLE <表名>;
+> ```
+>
+
+## 表定义的更新（ ALTER TABLE语句）
+
+> *语法1-4, 语法1-5　添加、删除列的`ALTER TABLE`语句*
+>
+> ```mysql
+> ALTER TABLE <表名> ADD COLUMN <列名> VARCHAR(100);	/* 添加列 */
+> ALTER TABLE <表名> DROP COLUMN <列名>;				/* 删除列 */
+> ```
+>
+
+## 向Product表中插入数据
+
+> *代码清单1-6 向**Product**表中插入数据的SQL语句*
+>
+> ```mysql
+> -- DML: 插入数据
+> START TRANSACTION;
+> INSERT INTO product
+> VALUES
+> 	('0001', 'T恤衫', '衣服', 1000, 500, '2009-09-20', 'TXUSHAN');
+> COMMIT;
+> ```
+>
+
+# 表名的修改
+
+> *代码清单1-A 变更表名*
+>
+> ```mysql
+> RENAME TABLE <原表名> TO <现表名>;
+> ```
+>
