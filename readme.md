@@ -12,7 +12,7 @@
 
 
 
-[在Visual Studio上设置OpenCV项目](./opencv setup.md)
+[在Visual Studio上设置OpenCV项目](./OpenCV-Setup.md)
 
 # Notes
 
