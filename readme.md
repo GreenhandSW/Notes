@@ -12,7 +12,7 @@
 
 
 
-[在Visual Studio上设置OpenCV项目](./OpenCV-Setup.md)
+[无需复制任何文件！详解在微软Visual Studio上设置OpenCV项目最简单的方法](./OpenCV-Setup.md)
 
 # Notes
 
