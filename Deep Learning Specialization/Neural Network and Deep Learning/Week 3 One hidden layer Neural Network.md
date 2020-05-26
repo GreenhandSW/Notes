@@ -30,9 +30,8 @@
     <br>
     <b>计算损失函数</b>
 </div>
-
-**正向传播**：正向计算$\displaystyle z^{[i]}, a^{[i]}, \mathcal{L}(a^{[i]}, y)$。
-**反向传播**：反向计算$\displaystyle dw, db$等。
+**正向传播**：正向计算$z^{[i]}, a^{[i]}, \mathcal{L}(a^{[i]}, y)$。
+**反向传播**：反向计算$dw, db$等。
 
 # 2. 神经网络表示
 <div align="center">
@@ -40,7 +39,6 @@
     <br>
     <b>双层（单隐层）神经网络</b>
 </div>
-
 输入特征的数值也可用$a^{[0]}$表示，即对第$0$层有$x=a^{[0]}$，其中$a$表示“**激活**”，表示网络中不同层的值会传递给后面的层。$a^{[j]}_{i}$表示第$j$层的第$i$个单元。
 输出层（此图中为$a^{[2]}$）的值即预测值$\hat{y}$。
 
@@ -51,7 +49,6 @@
     <br>
     <b>单个神经元及其计算过程</b>
 </div>
-
 <span id="jump1">神经网络计算过程（$l$层）</span>
 
 | 非向量化 | $z^{[j]}_{i}=w^{[j]T}_{i}x+b^{[j]}_{i}, a^{[j]}_{i}=\sigma(z^{[j]}_{i})$ |
@@ -166,31 +163,35 @@ $$
 
 ## sigmoid
 
-$a=g(z)=\sigma(z)=\frac{1}{1+e^{-z}}$
-
-$g^{'}(z)=\frac{d}{dz}g(z)=\frac{1}{1+e^{-z}}(1-\frac{1}{1+e^{-z}})=g(z)(1-g(z))=a(1-a)$
+$$
+a=g(z)=\sigma(z)=\frac{1}{1+e^{-z}}\\
+g^{'}(z)=\frac{d}{dz}g(z)=\frac{1}{1+e^{-z}}(1-\frac{1}{1+e^{-z}})=g(z)(1-g(z))=a(1-a)
+$$
 
 ## tanh
 
-$a=g(z)=\tanh(z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}$
-
-$g^{'}(z)=\frac{d}{dz}g(z)=1-(\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}})^2=1-(\tanh(z))^2=1-a^2$
+$$
+a=g(z)=\tanh(z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}\\
+g^{'}(z)=\frac{d}{dz}g(z)=1-(\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}})^2=1-(\tanh(z))^2=1-a^2
+$$
 
 ## ReLU
 
-$a=g(z)=\max(0,z)$
-
-$g^{'}(z)=\frac{d}{dz}g(z)=\left\{\begin{aligned}
+$$
+a=g(z)=\max(0,z)\\
+g^{'}(z)=\frac{d}{dz}g(z)=\left\{\begin{aligned}
 0 & ,\ z<0\\
-1 & ,\ z>0\\undefined &,\ z=0\end{aligned}\right.$
+1 & ,\ z>0\\undefined &,\ z=0\end{aligned}\right.
+$$
 
 ## Leaky ReLU
 
-$a=g(z)=\max(0.0z,z)$
-
-$g^{'}(z)=\frac{d}{dz}g(z)=\left\{\begin{aligned}
+$$
+a=g(z)=\max(0.0z,z)\\
+g^{'}(z)=\frac{d}{dz}g(z)=\left\{\begin{aligned}
 0.01 &,\ z<0\\
-1 & ,\ z>0\\undefined &,\ z=0\end{aligned}\right.$
+1 & ,\ z>0\\undefined &,\ z=0\end{aligned}\right.
+$$
 
 # 9. 神经网络的梯度下降法
 
@@ -238,7 +239,7 @@ $g^{'}(z)=\frac{d}{dz}g(z)=\left\{\begin{aligned}
 
 ​		如图，若参数全部初始化为0，则有
 $$
-\displaystyle W^{[ 1]} =\begin{bmatrix}
+W^{[ 1]} =\begin{bmatrix}
 0 & 0\\
 0 & 0
 \end{bmatrix} ,\ b^{[ 1]} =\begin{bmatrix}

@@ -47,7 +47,7 @@ hv(no)->e
 
 ## 逻辑回归
 
-​		求解的问题：$\displaystyle \min_{w,b}J(w,b)$
+​		求解的问题：$\min_{w,b}J(w,b)$
 
 ### $L1$正则化
 
@@ -55,7 +55,7 @@ $$
 \displaystyle J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|w\right\|_1
 $$
 
-其中，$\displaystyle \left\|w\right\|_1=\sum_{j=1}^{n_x}\left|w_j\right|=w^Tw$，$\lambda$为正则化参数，通常使用验证集或交叉验证来配置$\lambda$。
+其中，$\left\|w\right\|_1=\sum_{j=1}^{n_x}\left|w_j\right|=w^Tw$，$\lambda$为正则化参数，通常使用验证集或交叉验证来配置$\lambda$。
 
 ​		$L1$正则化更易得到稀疏解（即$w$向量中有很多0）。
 
@@ -65,7 +65,7 @@ $$
 \displaystyle J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|w\right\|^2_2
 $$
 
-其中，$\displaystyle \left\|w\right\|_2^2=\sum_{j=1}^{n_x}w_j^2=w^Tw$。
+其中，$\left\|w\right\|_2^2=\sum_{j=1}^{n_x}w_j^2=w^Tw$。
 
 ​		因为$w$是高维参数矢量，足够表达高偏差问题，$w$几乎涵盖所有参数，而$b$只是单个数字，故一般正则化不加$b$。
 
@@ -75,7 +75,11 @@ $$
 
 ## 神经网络
 
-​		求解的问题：$\displaystyle \min_{w^{[l]}, b^{[l]}} J(w^{[1]}, b^{[1]}, \cdots, w^{[L]}, b^{[L]}) $。
+​		求解的问题：
+$$
+\min_{w^{[l]}, b^{[l]}} J(w^{[1]}, b^{[1]}, \cdots, w^{[L]}, b^{[L]}) 
+$$
+
 
 ### Frobenius范数（$L2$范数）
 
@@ -83,7 +87,7 @@ $$
 J(w^{[1]}, b^{[1]}, \cdots, w^{[L]}, b^{[L]})=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|W^{[l]}\right\|^2_F
 $$
 
-其中，$\displaystyle \left\|W^{[l]}\right\|_F^2=\sum_i^{n^{[l]}} \sum_j^{n^{[l-1]}} w_{ij}^2$，$W$的维度为$(n^{[l]}, n^{[l-1]})$。
+其中，$\left\|W^{[l]}\right\|_F^2=\sum_i^{n^{[l]}} \sum_j^{n^{[l-1]}} w_{ij}^2$，$W$的维度为$(n^{[l]}, n^{[l-1]})$。
 
 ​		**正则化后的反向传播过程**：
 $$

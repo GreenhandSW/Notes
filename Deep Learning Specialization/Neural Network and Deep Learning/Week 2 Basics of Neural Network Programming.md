@@ -1,10 +1,10 @@
 # 1. 二分分类
 
-**单个训练样本**：$\displaystyle ( x,y) \ \ \ \ x\in \mathbb{R}^{n_{x}} ,\ y\ \in \{0,1\}$
-**$m$个训练样本**： $\displaystyle \left\{\left( x^{( 1)} ,\ y^{( 1)}\right) ,\left( x^{( 2)} ,\ y^{( 2)}\right) ,\ \cdots ,\ \left( x^{( m)} ,\ y^{( m)}\right) \ \right\} ,\ m=m_{train}$
+**单个训练样本**：$( x,y) \ \ \ \ x\in \mathbb{R}^{n_{x}} ,\ y\ \in \{0,1\}$
+**$m$个训练样本**： $\left\{\left( x^{( 1)} ,\ y^{( 1)}\right) ,\left( x^{( 2)} ,\ y^{( 2)}\right) ,\ \cdots ,\ \left( x^{( m)} ,\ y^{( m)}\right) \ \right\} ,\ m=m_{train}$
 **训练集**: 
 $$
-\displaystyle X=\begin{bmatrix}
+X=\begin{bmatrix}
 x^{( 1)} & x^{( 2)} & \cdots  & x^{( m)}
 \end{bmatrix}, X\in \mathbb{R}^{n_{x} \times m}
 $$
@@ -12,7 +12,7 @@ $$
 
 ​		或 
 $$
-\displaystyle X=\begin{bmatrix}
+X=\begin{bmatrix}
 x^{( 1)^{T}}\\
 x^{( 2)^{T}}\\
 \vdots \\
@@ -24,24 +24,24 @@ $$
 X.shape = (nx, m)
 ```
 
- $\displaystyle Y=\left[ y^{( 1)} ,\ y^{( 2)} ,\ \cdots ,\ y^{( m)}\right] ,\ \ \ Y\in \mathbb{R}^{1\times m}$
+ $Y=\left[ y^{( 1)} ,\ y^{( 2)} ,\ \cdots ,\ y^{( m)}\right] ,\ \ \ Y\in \mathbb{R}^{1\times m}$
 
 ```python
 Y.shape = (1, m)
 ```
 
-$\displaystyle m_{train}$: 训练样本数量
-$\displaystyle m_{test}$: 测试样本数量
+$m_{train}$: 训练样本数量
+$m_{test}$: 测试样本数量
 
 # 2. Logistic回归
 
-给定$\displaystyle \ x$，希望得到$\displaystyle \ \hat{y} =P( y=1|x)$
+给定$\ x$，希望得到$\ \hat{y} =P( y=1|x)$
 
-1. 输入： $\displaystyle x\in \mathbb{R}$
-2. 参数： $\displaystyle w\in \mathbb{R}^{n_{x}} ,\ b\in \mathbb{R}$
-3. 输出： $\displaystyle \hat{y}$
+1. 输入： $x\in \mathbb{R}$
+2. 参数： $w\in \mathbb{R}^{n_{x}} ,\ b\in \mathbb{R}$
+3. 输出： $\hat{y}$
 
-logistic回归模型：$\displaystyle \hat{y} =\sigma \left( w^{T} x+b\right)$。令$\displaystyle z=w^{T} x+b$，则有
+logistic回归模型：$\hat{y} =\sigma \left( w^{T} x+b\right)$。令$z=w^{T} x+b$，则有
 $$
 \hat{y} =\sigma ( z) =\frac{1}{1+e^{-z}}\\
 \lim _{z\rightarrow+\infty } \sigma ( z) =1\\
@@ -49,7 +49,7 @@ $$
 $$
 各量的其他记法：
 $$
-\displaystyle x\in \mathbb{R}^{n_{x} +1} ,\ x_{0} =1\\
+x\in \mathbb{R}^{n_{x} +1} ,\ x_{0} =1\\
 \hat{y} =\sigma \left( \theta ^{T} x\right) ,\ \theta =\begin{bmatrix}
 \theta ^{( 1)^{T}}\\
 \theta ^{( 2)^{T}}\\
@@ -64,32 +64,35 @@ $$
 
 # 3. Logistic回归成本函数
 
-给定训练样本$\displaystyle \left\{\left( x^{( 1)} ,\ y^{( 1)}\right) ,\left( x^{( 2)} ,\ y^{( 2)}\right) ,\ \cdots ,\ \left( x^{( m)} ,\ y^{( m)}\right) \ \right\}$，希望得到$\displaystyle \hat{y}^{( i)} \approx y^{( i)}$，其中上标$\displaystyle i$表示第$\displaystyle i$个样本。
+给定训练样本$\left\{\left( x^{( 1)} ,\ y^{( 1)}\right) ,\left( x^{( 2)} ,\ y^{( 2)}\right) ,\ \cdots ,\ \left( x^{( m)} ,\ y^{( m)}\right) \ \right\}$，希望得到$\hat{y}^{( i)} \approx y^{( i)}$，其中上标$i$表示第$i$个样本。
 
 ## 1. 损失函数
 
-​		衡量$\displaystyle w,\ b$在单个训练样本上的表现，对每一个训练样本都输出$\displaystyle y^{( i)}$，并与样本标签$\displaystyle \hat{y}^{( i)}$比较。越小越好。
+​		衡量$w,\ b$在单个训练样本上的表现，对每一个训练样本都输出$y^{( i)}$，并与样本标签$\hat{y}^{( i)}$比较。越小越好。
 $$
-\displaystyle \mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\left[ y^{( i)}\log\left(\hat{y}^{( i)}\right) +\left( 1-y^{( i)}\right)\log\left( 1-\hat{y}^{( i)}\right)\right]
+\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\left[ y^{( i)}\log\left(\hat{y}^{( i)}\right) +\left( 1-y^{( i)}\right)\log\left( 1-\hat{y}^{( i)}\right)\right]
 $$
-​	当$\displaystyle y^{( i)} =1$时，$\displaystyle \mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\log\left(\hat{y}^{( i)}\right)$，要使$\displaystyle \mathcal{L}$尽可能小，则要使$\displaystyle \hat{y}^{( i)}$尽可能大；
-​	当$\displaystyle y^{( i)} =0$时，$\displaystyle \mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\log\left( 1-\hat{y}^{( i)}\right)$，要使$\displaystyle \mathcal{L}$尽可能小，则要使$\displaystyle \hat{y}^{( i)}$尽可能小；
+​	当$y^{( i)} =1$时，$\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\log\left(\hat{y}^{( i)}\right)$，要使$\mathcal{L}$尽可能小，则要使$\hat{y}^{( i)}$尽可能大；
+​	当$y^{( i)} =0$时，$\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\log\left( 1-\hat{y}^{( i)}\right)$，要使$\mathcal{L}$尽可能小，则要使$\hat{y}^{( i)}$尽可能小；
 
 ## 2. 成本函数
 
-衡量$\displaystyle w,\ b$在全体训练样本上的表现。
-$\displaystyle J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\frac{1}{m}\sum ^{m}_{i=1}\left[ y^{( i)}\log\left(\hat{y}^{( i)}\right) +\left( 1-y^{( i)}\right)\log\left( 1-\hat{y}^{( i)}\right)\right]$
+衡量$w,\ b$在全体训练样本上的表现。
+$$
+J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right) =-\frac{1}{m}\sum ^{m}_{i=1}\left[ y^{( i)}\log\left(\hat{y}^{( i)}\right) +\left( 1-y^{( i)}\right)\log\left( 1-\hat{y}^{( i)}\right)\right]
+$$
+
 
 # 4. 梯度下降法
 
-作用：用于习得合适的$\displaystyle w,\ b$，使得$\displaystyle J( w,b)$最小。
+作用：用于习得合适的$w,\ b$，使得$J( w,b)$最小。
 
 |                             图像                             | 计算过程                                                     |
 | :----------------------------------------------------------: | :----------------------------------------------------------- |
-| <img src="Week 2 Basics of Neural Network Programming.assets/timg.jpg" alt="一维梯度下降" style="zoom:50%;" /> | repeat{<br />         $w=w-\alpha \frac{dJ( w)}{dw}$<br />}<br />>注：编程时使用$\displaystyle dw$ 作为$\displaystyle \frac{dJ( w)}{dw}$ 的变量名 |
-| ![多维梯度下降](Week 2 Basics of Neural Network Programming.assets/u=485519788,313928834&fm=26&gp=0.jpg) | repeat\{<br/>	$\displaystyle w=w-\alpha \frac{\partial J( w)}{\partial w}$<br/>	$\displaystyle b=b-\alpha \frac{\partial J( w)}{\partial w}$<br/>\} |
+| <img src="Week 2 Basics of Neural Network Programming.assets/timg.jpg" alt="一维梯度下降" style="zoom:50%;" /> | repeat{<br />         $w=w-\alpha \frac{dJ( w)}{dw}$<br />}<br />>注：编程时使用$dw$ 作为$\frac{dJ( w)}{dw}$ 的变量名 |
+| ![多维梯度下降](Week 2 Basics of Neural Network Programming.assets/u=485519788,313928834&fm=26&gp=0.jpg) | repeat\{<br/>	$w=w-\alpha \frac{\partial J( w)}{\partial w}$<br/>	$b=b-\alpha \frac{\partial J( w)}{\partial w}$<br/>\} |
 
-其中：$\displaystyle \alpha $为学习率（步长）
+其中：$\alpha $为学习率（步长）
 
 # 5. 导数
 
@@ -97,53 +100,62 @@ $\displaystyle J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)
 
 # 7. 计算图
 
-$\displaystyle J( a,b,c) =3( a+bc)$
+$J( a,b,c) =3( a+bc)$
 
-令$\displaystyle u=bc$，则$\displaystyle v=a+u$，$\displaystyle J=3v$
+令$u=bc$，则$v=a+u$，$J=3v$
 
 <img src="Week 2 Basics of Neural Network Programming.assets/1571473412094.png" alt="1571473412094" style="zoom:80%;" />
 
 # 8. 计算图的导数计算
 
 $$
-\displaystyle \frac{dJ}{da} =\frac{dJ}{dv} \cdot \frac{dv}{da}
+\frac{dJ}{da} =\frac{dJ}{dv} \cdot \frac{dv}{da}
 $$
 
 # 9. logistic回归中的梯度下降法
 
 ## 1. 单个样本的logistic函数
-​		$\displaystyle  \begin{array}{{>{\displaystyle}l}}
-z=w^{T} x+b\\
-\hat{y} =a=\sigma ( z)\\
-\mathcal{L}( a,y) =-( y(\log( a) +( 1-y)\log( 1-a))
-\end{array}$
+$$
+\begin{aligned}
+z&=w^{T} x+b\\
+\hat{y} &=a=\sigma ( z)\\
+\mathcal{L}( a,y) &=-( y(\log( a) +( 1-y)\log( 1-a))
+\end{aligned}
+$$
 
 ## 2. 计算梯度
-​		$\displaystyle "da"=\frac{d\mathcal{L}( a,y)}{da} =-\frac{y}{a} +\frac{1-y}{1-a}$
-​		$\displaystyle "dz"=\frac{d\mathcal{L}( a,y)}{dz} =\frac{d\mathcal{L}}{da} \cdot \frac{da}{dz} =a-y$
-​		$\displaystyle \begin{aligned}
+
+$$
+\begin{aligned}
+"da"& =\frac{d\mathcal{L}( a,y)}{da} =-\frac{y}{a} +\frac{1-y}{1-a}\\
+"dz"&=\frac{d\mathcal{L}( a,y)}{dz} =\frac{d\mathcal{L}}{da} \cdot \frac{da}{dz} =a-y\\
 "dw_{1} " & =\frac{\partial \mathcal{L}}{\partial w_{1}} =x_{1} dz\\
 "dw_{2} " & =x_{2} dz\\
 "db" & =dz
-\end{aligned}$
+\end{aligned}
+$$
 
 ## 3. 更新权重和阈值
-​		$\displaystyle \begin{aligned}
+$$
+\begin{aligned}
 w_{1} & =w_{1} -\alpha dw_{1}\\
 w_{2} & =w_{2} -\alpha dw_{2}\\
 b & =b-\alpha d
-\end{aligned}$
+\end{aligned}
+$$
+
+
 
 # 10. $m$个样本的梯度下降
 
 单个样本的梯度下降即**随机梯度下降(SGD)**，多个样本的梯度下降即**平均梯度下降**。
 
-**全局成本函数**：$\displaystyle J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left( a^{( i)} ,y^{( i)}\right)$
+**全局成本函数**：$J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left( a^{( i)} ,y^{( i)}\right)$
 
 ​		其中，
 $$
 \begin{eqnarray}
-&&\displaystyle a^{( i)} =\hat{y}^{( i)} =\sigma \left( z^{( i)}\right) =\sigma \left( w^{T} x^{( i)} +b\right)\\
+&&a^{( i)} =\hat{y}^{( i)} =\sigma \left( z^{( i)}\right) =\sigma \left( w^{T} x^{( i)} +b\right)\\
 &&\frac{\partial }{\partial w_{1}} J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\frac{\partial }{\partial w_{1}}\mathcal{L}\left( a^{( i)} ,y^{( i)}\right) =\frac{1}{m}\sum ^{m}_{i=1} "dw_{1}"
 \end{eqnarray}
 $$
@@ -187,11 +199,11 @@ $$
 >
 >$b=b-\alpha d$
 
-​		其中，$\displaystyle z^{( i)}$含有上标，因为其对应第$\displaystyle i$个训练样本的计算，而$\displaystyle dw_{1} ,\ dw_{2} ,\ db$用作累加器（最后除以$m$，得到$\displaystyle "dw_{1} "=\frac{\partial \mathcal{L}}{\partial w_{1}}$），故没有上标。
+​		其中，$z^{( i)}$含有上标，因为其对应第$i$个训练样本的计算，而$dw_{1} ,\ dw_{2} ,\ db$用作累加器（最后除以$m$，得到$"dw_{1} "=\frac{\partial \mathcal{L}}{\partial w_{1}}$），故没有上标。
 
 # 11. 向量化(vectorization techniques)
 
-以计算$\displaystyle z=w^{T} x+b$为例：
+以计算$z=w^{T} x+b$为例：
 
 - 非向量化
 
@@ -208,7 +220,7 @@ $$
 z = np.dot(w, x) + b
 ```
 
-​		其中$\displaystyle w,\ x\in R^{n_{x}}, b$为常数，但通过`Python`的广播机制转化为$n_x$维向量进行计算。
+​		其中$w,\ x\in R^{n_{x}}, b$为常数，但通过`Python`的广播机制转化为$n_x$维向量进行计算。
 
 >`numpy`的内置函数能够使用SIMD指令来加快运算速度。
 
@@ -222,13 +234,13 @@ z = np.dot(w, x) + b
 
 # 13. 向量化logistic回归
 
-$\displaystyle X=\begin{bmatrix}
+$X=\begin{bmatrix}
 x^{( 1)} & x^{( 2)} & \cdots  & x^{( m)}
 \end{bmatrix}, X\in \mathbb{R}^{n_{x} \times m}, w\in \mathbb{R}^{n_{x}} ,\ b\in \mathbb{R}$
 
 则
 $$
-\begin{align*}
+\begin{aligned}
 Z & =\begin{bmatrix}
 z^{( 1)} & z^{( 2)} & \cdots  & z^{( m)}
 \end{bmatrix}\\
@@ -238,42 +250,49 @@ b & b & \cdots  & b
  & =\begin{bmatrix}
 w^{T} x^{( 1)} +b & w^{T} x^{( 2)} +b & \cdots  & w^{T} x^{( m)} +b
 \end{bmatrix}
-\end{align*}
+\end{aligned}
 $$
 
 非向量化与向量化的logistic回归的比较见下节。
 
 # 14. 向量化logistic回归的梯度输出
 
-$\displaystyle A=\begin{bmatrix}
+$A=\begin{bmatrix}
 a^{( 1)} & a^{( 2)} & \cdots  & a^{( m)}
 \end{bmatrix} ,\ Y=\begin{bmatrix}
 y^{( 1)} & y^{( 2)} & \cdots  & y^{( m)}
 \end{bmatrix}$
 
-$\displaystyle dZ=\begin{bmatrix}
+$dZ=\begin{bmatrix}
 dz^{( 1)} & dz^{( 2)} & \cdots  & dz^{( m)}
 \end{bmatrix}$
 
 | 一次非向量化迭代                                             | 一次向量化迭代                             |
 | ------------------------------------------------------------ | ------------------------------------------ |
 | $for\ i=1\ to\ m:\\ \ \ \ \ z^{( i)} =w^{T} x^{( i)} +b$     | $z=w^{T} x\ +\ b$                          |
-| $\begin{array}{l}for\ i=1\ to\ m:\\\ \ \ \ a^{( i)} =\sigma \left( z^{( i)}\right)\end{array}$ | $\displaystyle a=\sigma ( z)$              |
-| $\displaystyle  \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ dz^{( i)} =a^{( i)} -y^{( i)}\end{array}$ | $\displaystyle dz=a-y$                     |
-| $\displaystyle  \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ dw_{j} +=x^{( i)}_{j} dz^{( i)}\\dw_{j} /=m\end{array}$ | $\displaystyle dw=\frac{1}{m} xdz^{T}$     |
-| $\displaystyle  \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ db+=dz^{( i)}\\db/=m\end{array}$ | $\displaystyle db=\frac{1}{m} np.sum( dz)$ |
-| $\displaystyle  \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ w_{1} =w_{1} -\alpha dw_{1}\end{array}$ | $\displaystyle w=w-\alpha dw$              |
-| $\displaystyle b=b-\alpha d$                                 | $\displaystyle b=b-\alpha d$               |
+| $\begin{array}{l}for\ i=1\ to\ m:\\\ \ \ \ a^{( i)} =\sigma \left( z^{( i)}\right)\end{array}$ | $a=\sigma ( z)$              |
+| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ dz^{( i)} =a^{( i)} -y^{( i)}\end{array}$ | $dz=a-y$                     |
+| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ dw_{j} +=x^{( i)}_{j} dz^{( i)}\\dw_{j} /=m\end{array}$ | $dw=\frac{1}{m} xdz^{T}$     |
+| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ db+=dz^{( i)}\\db/=m\end{array}$ | $db=\frac{1}{m} np.sum( dz)$ |
+| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ w_{1} =w_{1} -\alpha dw_{1}\end{array}$ | $w=w-\alpha dw$              |
+| $b=b-\alpha d$                                 | $b=b-\alpha d$               |
 
 # 15. `Python`中的广播
 
-$\displaystyle x=\begin{bmatrix}
+$$
+x=\begin{bmatrix}
 x^{( 1)}\\
 x^{( 2)}\\
 \vdots \\
 x^{( n)}
-\end{bmatrix} ,\ A_{m\times n} ,\ c\in \mathbb{R}$，则
-$\displaystyle x+c=\begin{bmatrix}
+\end{bmatrix} ,\ A_{m\times n} ,\ c\in \mathbb{R}
+$$
+
+
+
+则
+$$
+x+c=\begin{bmatrix}
 x^{( 1)}\\
 x^{( 2)}\\
 \vdots \\
@@ -283,13 +302,14 @@ c\\
 c\\
 \vdots \\
 c
-\end{bmatrix}$
-$\displaystyle A+x^{T.} =A+\begin{bmatrix}
+\end{bmatrix}\\
+A+x^{T.} =A+\begin{bmatrix}
 x^{T}\\
 x^{T}\\
 \vdots \\
 x^{T}
-\end{bmatrix}$
+\end{bmatrix}
+$$
 
 # 16. 关于`Python/numpy`向量的说明
 
@@ -326,14 +346,14 @@ x^{T}
 
 ## 1. 损失函数
 
-**单个样本概率分布**：$\displaystyle p( y|x) =\left\{\begin{aligned}
+**单个样本概率分布**：$p( y|x) =\left\{\begin{aligned}
 \hat{y} & ,\ y=1\\
 1-\hat{y} & ,\ y=0
 \end{aligned}\right. $
 
-**合并形式**：$\displaystyle p( y|x) =\hat{y}^{y}\left( 1-\hat{y}\right)^{( 1-y)}$
+**合并形式**：$p( y|x) =\hat{y}^{y}\left( 1-\hat{y}\right)^{( 1-y)}$
 
-​		由于最大化$\displaystyle p( y|x)$等同于最大化$\displaystyle \log p( y|x)$，因此求对数并取负值得到<u>**损失函数**</u>：
+​		由于最大化$p( y|x)$等同于最大化$\log p( y|x)$，因此求对数并取负值得到<u>**损失函数**</u>：
 
 交叉熵：
 $$
@@ -346,16 +366,16 @@ $$
 
 ​		从最大似然角度出发，设所有样本独立同分布，则：
 
-**样本集概率分布**：$\displaystyle P( X) =\prod ^{m}_{i=1} P\left( y^{( i)} |x^{( i)}\right)$
+**样本集概率分布**：$P( X) =\prod ^{m}_{i=1} P\left( y^{( i)} |x^{( i)}\right)$
 
 ​		同上，得到
 $$
-\displaystyle \log P( X) =\sum ^{m}_{i=1}\log P\left( y^{( i)} |x^{( i)}\right) =-\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right)
+\log P( X) =\sum ^{m}_{i=1}\log P\left( y^{( i)} |x^{( i)}\right) =-\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right)
 $$
 ​		再取平均值，得到**<u>成本函数</u>**：
 $$
-\displaystyle J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right)
+J( w,b) =\frac{1}{m}\sum ^{m}_{i=1}\mathcal{L}\left(\hat{y}^{( i)} ,y^{( i)}\right)
 $$
 
-​		最大化$\displaystyle p( y|x)$等同于最小化$J( w,b)$。
+​		最大化$p( y|x)$等同于最小化$J( w,b)$。
 
