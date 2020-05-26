@@ -271,10 +271,10 @@ dz^{( 1)} & dz^{( 2)} & \cdots  & dz^{( m)}
 | ------------------------------------------------------------ | ------------------------------------------ |
 | $for\ i=1\ to\ m:\\ \ \ \ \ z^{( i)} =w^{T} x^{( i)} +b$     | $z=w^{T} x\ +\ b$                          |
 | $\begin{array}{l}for\ i=1\ to\ m:\\\ \ \ \ a^{( i)} =\sigma \left( z^{( i)}\right)\end{array}$ | $a=\sigma ( z)$              |
-| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ dz^{( i)} =a^{( i)} -y^{( i)}\end{array}$ | $dz=a-y$                     |
-| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ dw_{j} +=x^{( i)}_{j} dz^{( i)}\\dw_{j} /=m\end{array}$ | $dw=\frac{1}{m} xdz^{T}$     |
-| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ db+=dz^{( i)}\\db/=m\end{array}$ | $db=\frac{1}{m} np.sum( dz)$ |
-| $ \begin{array}{{>{\displaystyle}l}}for\ i=1\ to\ m:\\\ \ \ \ w_{1} =w_{1} -\alpha dw_{1}\end{array}$ | $w=w-\alpha dw$              |
+| $\begin{array} for\ i=1\ to\ m:\\\ \ \ \ dz^{( i)} =a^{( i)} -y^{( i)}\end{array}$ | $dz=a-y$                     |
+| $\begin{array} for\ i=1\ to\ m:\\\ \ \ \ dw_{j} +=x^{( i)}_{j} dz^{( i)}\\dw_{j} /=m\end{array}$ | $dw=\frac{1}{m} xdz^{T}$     |
+| $\begin{array} for\ i=1\ to\ m:\\\ \ \ \ db+=dz^{( i)}\\db/=m\end{array}$ | $db=\frac{1}{m} np.sum( dz)$ |
+| $\begin{array} for\ i=1\ to\ m:\\\ \ \ \ w_{1} =w_{1} -\alpha dw_{1}\end{array}$ | $w=w-\alpha dw$              |
 | $b=b-\alpha d$                                 | $b=b-\alpha d$               |
 
 # 15. `Python`中的广播

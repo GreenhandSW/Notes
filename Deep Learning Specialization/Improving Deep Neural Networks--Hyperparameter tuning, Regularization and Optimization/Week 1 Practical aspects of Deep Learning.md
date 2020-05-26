@@ -52,7 +52,7 @@ hv(no)->e
 ### $L1$正则化
 
 $$
-\displaystyle J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|w\right\|_1
+J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|w\right\|_1
 $$
 
 其中，$\left\|w\right\|_1=\sum_{j=1}^{n_x}\left|w_j\right|=w^Tw$，$\lambda$为正则化参数，通常使用验证集或交叉验证来配置$\lambda$。
@@ -62,7 +62,7 @@ $$
 ### $L2$正则化
 
 $$
-\displaystyle J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|w\right\|^2_2
+J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\mathcal{L}(\hat{y}^{(i)}, y)+\frac{\lambda}{2m}\left\|w\right\|^2_2
 $$
 
 其中，$\left\|w\right\|_2^2=\sum_{j=1}^{n_x}w_j^2=w^Tw$。
@@ -186,7 +186,6 @@ al /= keep_prob
 1. **$0$均值化**：移动训练集，使其均值为$0$：
 
 $$
-\displaystyle
 \begin{aligned}
 \mu&=\frac{1}{m}\sum_{i=1}{m}x^{(i)}\\
 x&=x-\mu
@@ -198,7 +197,6 @@ $$
 2. **归一化方差**：使各分量方向的方差都为$1$：
 
 $$
-\displaystyle
 \begin{aligned}
 \sigma^2&=\frac{1}{m}\sum_{i=1}^m (x^{(i)})^2\\
 x/&=\sigma^2
