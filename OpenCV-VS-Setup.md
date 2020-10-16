@@ -126,7 +126,7 @@
 <img src="OpenCV-VS-Setup.assets/点击导出模板.png" alt="点击导出模板" style="zoom:80%;" />
 
 2. 在弹出的窗口中直接选择`下一步` (`Next`)。
-3. 依次设置模板名称、描述和图标，最后点击`结束` (`Finish`)即可（点击下载[OpenCV官方图标](https://opencv.org/wp-content/uploads/2019/02/opencv-logo-1.png)）。
+3. 依次设置模板名称、描述和图标，最后 点击`结束` (`Finish`)即可（点击下载[OpenCV官方图标](https://opencv.org/wp-content/uploads/2019/02/opencv-logo-1.png)）。
 
 <img src="OpenCV-VS-Setup.assets/设置模板属性.png" alt="设置模板属性" style="zoom:80%;" />
 
